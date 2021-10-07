@@ -1,11 +1,17 @@
-﻿# CMakeList.txt : CMake project for smp, include source and define
-# project specific logic here.
-#
-cmake_minimum_required (VERSION 3.8)
+﻿cmake_minimum_required(VERSION 3.20)
 
-project ("smp")
+include("${CMAKE_SOURCE_DIR}/cmake/MakeModule.cmake")
 
-# Add source to this project's executable.
-add_executable (smp "smp.cpp" "smp.h")
+set(MODULE_NAME smp)
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED YES)
+add_compile_options(/std:c++latest)
 
-# TODO: Add tests and install targets if needed.
+project(${MODULE_NAME} LANGUAGES CXX)
+
+make_module(
+	MODULE_NAME ${MODULE_NAME}
+	MODULE_FILES
+		smp
+	CXX_STANDARD 20
+)
